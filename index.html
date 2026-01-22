@@ -1,1 +1,474 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Quantinuum RSU Calculator</title><style>*{box-sizing:border-box;margin:0;padding:0}body{min-height:100vh;background:#030306;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#fff;overflow-x:hidden}.bg1{position:fixed;top:-10%;left:-20%;width:80vw;height:80vw;max-width:800px;max-height:800px;background:radial-gradient(circle,rgba(45,212,191,.12) 0%,transparent 50%);filter:blur(80px);pointer-events:none;animation:float 30s ease-in-out infinite}.bg2{position:fixed;bottom:0;right:-10%;width:60vw;height:60vw;max-width:600px;max-height:600px;background:radial-gradient(circle,rgba(20,184,166,.1) 0%,transparent 50%);filter:blur(100px);pointer-events:none;animation:float 25s ease-in-out infinite reverse}@keyframes float{0%,100%{transform:translate(0,0)}33%{transform:translate(20px,-20px)}66%{transform:translate(-15px,10px)}}@keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}.container{position:relative;padding:48px 24px;max-width:880px;margin:0 auto}@media(max-width:640px){.container{padding:24px 16px}}.badge{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;background:rgba(45,212,191,.1);border-radius:100px;margin-bottom:20px;border:1px solid rgba(45,212,191,.25)}.badge-dot{width:8px;height:8px;border-radius:50%;background:#2dd4bf;box-shadow:0 0 12px #2dd4bf;animation:pulse 2s ease-in-out infinite}.badge-text{color:#2dd4bf;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}h1{font-size:clamp(32px,6vw,44px);font-weight:700;margin-bottom:12px;letter-spacing:-.03em;line-height:1.1}h1 .teal{color:#2dd4bf;text-shadow:0 0 60px rgba(45,212,191,.5)}.subtitle{color:rgba(255,255,255,.4);font-size:14px;margin-bottom:48px}.card{background:linear-gradient(165deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.02) 100%);backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:36px;margin-bottom:20px}@media(max-width:640px){.card{padding:24px 20px;border-radius:20px}}.card-inner{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}@media(max-width:900px){.grid{grid-template-columns:1fr;gap:32px}}.label{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px}.label-bar{width:3px;height:12px;border-radius:2px;background:#2dd4bf}.value-display{margin-bottom:20px}.value{font-size:clamp(28px,5vw,36px);font-weight:600;color:#fff;letter-spacing:-.02em}.value-suffix{font-size:13px;color:rgba(45,212,191,.8);font-weight:500;margin-left:6px}input[type="range"]{-webkit-appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(90deg,rgba(45,212,191,.3) 0%,rgba(45,212,191,.1) 100%);cursor:pointer;outline:none}input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#2dd4bf 0%,#14b8a6 100%);cursor:pointer;box-shadow:0 0 0 4px rgba(45,212,191,.2),0 4px 16px rgba(45,212,191,.4);transition:all .2s ease}input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.1);box-shadow:0 0 0 6px rgba(45,212,191,.3),0 4px 24px rgba(45,212,191,.6)}input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#2dd4bf 0%,#14b8a6 100%);cursor:pointer;border:none}.range-labels{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}.price-box{margin-top:28px;padding:14px 20px;background:rgba(45,212,191,.06);border-radius:14px;border:1px solid rgba(45,212,191,.15);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px}.price-label{color:rgba(255,255,255,.45);font-size:13px}.price-value{color:#2dd4bf;font-weight:700;font-size:17px}.price-calc{color:rgba(255,255,255,.25);font-size:11px}.expand-btn{background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:12px 0;font-size:14px;font-weight:500;color:rgba(255,255,255,.5);transition:all .3s ease}.expand-btn:hover{color:#2dd4bf}.icon-box{width:28px;height:28px;border-radius:8px;background:rgba(45,212,191,.15);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:300;color:#2dd4bf}.hero{position:relative;border-radius:24px;padding:48px 40px;margin-bottom:20px;overflow:hidden;background:linear-gradient(135deg,rgba(45,212,191,.15) 0%,rgba(13,148,136,.08) 100%);border:1px solid rgba(45,212,191,.3);text-align:center}@media(max-width:640px){.hero{padding:36px 24px}}.hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:250px;height:150px;background:radial-gradient(ellipse,rgba(45,212,191,.4) 0%,transparent 70%);filter:blur(50px);pointer-events:none}.hero-label{color:rgba(255,255,255,.6);font-size:11px;text-transform:uppercase;letter-spacing:.2em;margin-bottom:12px;font-weight:600}.hero-value{font-size:clamp(48px,10vw,64px);font-weight:700;color:#fff;letter-spacing:-.03em;text-shadow:0 0 80px rgba(45,212,191,.6)}.hero-calc{color:rgba(255,255,255,.5);margin-top:12px;font-size:13px}.section-title{font-size:18px;font-weight:600;color:#fff;margin-bottom:4px}.section-subtitle{color:rgba(255,255,255,.4);font-size:12px;margin-bottom:24px}.vest-item{padding:18px 20px;background:rgba(255,255,255,.02);border-radius:14px;border:1px solid rgba(255,255,255,.05);margin-bottom:12px}@media(max-width:640px){.vest-item{padding:16px}}.vest-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:12px}.vest-left{display:flex;align-items:center;gap:12px}.vest-year{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#2dd4bf;font-weight:700;font-size:13px;flex-shrink:0;border:1px solid rgba(45,212,191,.3)}.vest-shares{color:#fff;font-weight:500;font-size:14px}.vest-total{color:rgba(255,255,255,.35);font-size:11px}.vest-right{text-align:right}.vest-value{color:#fff;font-weight:600;font-size:16px}.vest-add{color:#2dd4bf;font-size:11px;font-weight:600}.progress-bar{height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}.progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#2dd4bf 0%,#14b8a6 100%);box-shadow:0 0 16px rgba(45,212,191,.5);transition:width .4s ease}.time-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px}@media(max-width:900px){.time-grid{grid-template-columns:1fr}}.chart-container{height:260px;width:100%;margin-bottom:28px;position:relative}@media(max-width:640px){.chart-container{height:220px}}.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px;text-align:center}@media(max-width:640px){.stat-box{padding:14px 12px;border-radius:14px}}.stat-box.highlight{background:rgba(45,212,191,.08);border-color:rgba(45,212,191,.25)}.stat-label{color:rgba(255,255,255,.4);font-size:10px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;font-weight:600}.stat-value{font-weight:600;font-size:clamp(18px,3vw,22px)}.stat-value.red{color:#f87171}.stat-value.teal{color:#2dd4bf}.disclaimer{padding:16px 20px;border-radius:14px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.02)}.disclaimer p{color:rgba(255,255,255,.3);font-size:11px;line-height:1.6}.disclaimer .note{color:rgba(45,212,191,.7);font-weight:600}.tooltip{position:absolute;background:rgba(0,0,0,.95);backdrop-filter:blur(20px);border:1px solid rgba(45,212,191,.4);border-radius:16px;padding:16px 20px;box-shadow:0 20px 40px rgba(0,0,0,.5);pointer-events:none;opacity:0;transition:opacity .2s;z-index:100}.tooltip.visible{opacity:1}.tooltip-year{color:#2dd4bf;font-weight:700;font-size:15px;margin-bottom:12px}.tooltip-row{display:flex;justify-content:space-between;gap:24px;margin-bottom:8px}.tooltip-label{color:rgba(255,255,255,.5);font-size:12px}.tooltip-value{color:#fff;font-weight:600;font-size:13px}.tooltip-total{padding-top:8px;border-top:1px solid rgba(255,255,255,.1)}.tooltip-total .tooltip-label{color:rgba(255,255,255,.7);font-size:13px}.tooltip-total .tooltip-value{color:#2dd4bf;font-weight:700;font-size:16px}.hidden{display:none}.year-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}.year-chip{padding:10px 16px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all .25s ease;border:1px solid transparent;background:rgba(255,255,255,.04);color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.08)}.year-chip:hover{background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.3);color:rgba(255,255,255,.8)}.year-chip.active{background:rgba(45,212,191,.2);color:#2dd4bf;border-color:rgba(45,212,191,.5)}.grant-editor{padding:16px;background:rgba(45,212,191,.05);border-radius:12px;border:1px solid rgba(45,212,191,.15);margin-bottom:12px}.grant-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}.grant-year{color:#2dd4bf;font-size:14px;font-weight:600}.grant-value{color:#fff;font-size:16px;font-weight:600}.editable{cursor:pointer;padding:6px 10px;margin:-6px -10px;border-radius:12px;transition:all .3s}.editable:hover{background:rgba(45,212,191,.1)}.edit-input{font-size:inherit;font-weight:600;color:#fff;background:rgba(45,212,191,.15);border:2px solid rgba(45,212,191,.6);border-radius:12px;padding:8px 12px;outline:none;font-family:inherit;max-width:150px}</style></head><body><div class="bg1"></div><div class="bg2"></div><div class="container"><div style="text-align:center"><div class="badge"><div class="badge-dot"></div><span class="badge-text">Equity Calculator</span></div><h1><span class="teal">Quantinuum</span> RSU Value</h1><p class="subtitle">Model your equity across IPO scenarios</p></div><div class="card"><div class="grid"><div><div class="label"><div class="label-bar"></div>Annual RSU Grant</div><div class="value-display"><span class="value editable" id="rsuDisplay" onclick="editValue('rsu')">1,000</span><span class="value-suffix">shares/yr</span></div><input type="range" id="rsuSlider" min="0" max="460" value="100"><div class="range-labels"><span>0</span><span>100K</span></div></div><div><div class="label"><div class="label-bar"></div>IPO Valuation</div><div class="value-display"><span class="value">$</span><span class="value editable" id="ipoDisplay" onclick="editValue('ipo')">17.5</span><span class="value-suffix">billion</span></div><input type="range" id="ipoSlider" min="5" max="250" step="0.5" value="17.5"><div class="range-labels"><span>$5B</span><span>$250B</span></div></div></div><div class="price-box"><span class="price-label">Share price:</span><span class="price-value" id="priceDisplay">$38.89</span><span class="price-calc" id="priceCalc">($17.5B ÷ 450M)</span></div><button class="expand-btn" id="advancedBtn" onclick="toggleAdvanced()"><span class="icon-box" id="advancedIcon">+</span>Advanced Settings</button><div id="advancedSection" class="hidden"><div class="card-inner" style="margin-top:12px"><div style="margin-bottom:28px"><div class="label">Total Shares Outstanding</div><div class="value-display"><span class="value editable" id="sharesDisplay" onclick="editValue('shares')" style="font-size:26px">450</span><span class="value-suffix">million</span></div><input type="range" id="sharesSlider" min="250" max="1000" step="10" value="450"><p style="font-size:11px;color:rgba(255,255,255,.3);margin-top:10px">Actual count in S-1 filing.</p></div><div style="border-top:1px solid rgba(255,255,255,.06);padding-top:20px"><button class="expand-btn" id="grantsBtn" onclick="toggleGrants()" style="padding:0"><span class="icon-box" id="grantsIcon">+</span>Customize Past Grants</button><div id="grantsSection" class="hidden" style="margin-top:16px"><p style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px;line-height:1.5">Tap years to customize. Others use default: <span style="color:#2dd4bf;font-weight:600" id="defaultGrantDisplay">1,000</span></p><div class="year-chips" id="yearChips"></div><div id="grantEditors"></div></div></div></div></div></div><div class="hero"><div class="hero-glow"></div><div style="position:relative"><p class="hero-label">Single Grant · Fully Vested</p><p class="hero-value" id="heroValue">$38.9K</p><p class="hero-calc" id="heroCalc">1,000 × $38.89</p></div></div><div class="card"><h2 class="section-title">Vesting Schedule</h2><p class="section-subtitle">25% per year, 4 years</p><div id="vestingSchedule"></div></div><div class="card"><h2 class="section-title">Multi-Year Growth</h2><p class="section-subtitle" id="multiYearSubtitle">1,000 shares/year</p><div class="time-grid"><div class="card-inner"><div class="label" style="margin-bottom:10px">Start Year</div><div class="value-display" style="margin-bottom:10px"><span class="value editable" id="startYearDisplay" onclick="editValue('startYear')" style="font-size:24px">2022</span></div><input type="range" id="startYearSlider" min="2020" max="2026" step="1" value="2022"></div><div class="card-inner"><div class="label" style="margin-bottom:10px">Years at Company</div><div class="value-display" style="margin-bottom:10px"><span class="value editable" id="yearsDisplay" onclick="editValue('years')" style="font-size:24px">5</span><span class="value-suffix">yrs</span></div><input type="range" id="yearsSlider" min="1" max="20" step="1" value="5"></div></div><div class="chart-container" id="chartContainer"><svg id="chart" width="100%" height="100%"></svg><div class="tooltip" id="tooltip"></div></div><div class="stats-grid"><div class="stat-box"><p class="stat-label">Granted</p><p class="stat-value" id="grantedStat">5,000</p></div><div class="stat-box"><p class="stat-label">Vested</p><p class="stat-value" id="vestedStat">3,750</p></div><div class="stat-box"><p class="stat-label">Unvested</p><p class="stat-value red" id="unvestedStat">1,250</p></div><div class="stat-box highlight"><p class="stat-label" style="color:rgba(45,212,191,.8)">Total Value</p><p class="stat-value teal" id="totalValueStat">$145.8K</p></div></div></div><div class="disclaimer"><p><span class="note">Note:</span> Estimates only. Share price depends on market conditions, final share count, and underwriter pricing. Consult your equity agreement and a financial advisor.</p></div></div><script>let rsuAmount=1000,ipoValuation=17.5,totalShares=450,yearsWorked=5,startYear=2022;const historicalGrants={2020:null,2021:null,2022:null,2023:null,2024:null,2025:null,2026:null};const enabledYears={2020:false,2021:false,2022:false,2023:false,2024:false,2025:false,2026:false};const availableYears=[2020,2021,2022,2023,2024,2025,2026];function sliderToValue(s){if(s<=200)return s*10;if(s<=320)return 2000+(s-200)*25;if(s<=370)return 5000+(s-320)*100;return 10000+(s-370)*1000}function valueToSlider(v){if(v<=2000)return v/10;if(v<=5000)return 200+(v-2000)/25;if(v<=10000)return 320+(v-5000)/100;return 370+(v-10000)/1000}function formatCurrency(v){if(v>=1e6)return"$"+(v/1e6).toFixed(2)+"M";if(v>=1e3)return"$"+(v/1e3).toFixed(0)+"K";return"$"+v.toLocaleString("en-US",{maximumFractionDigits:0})}function formatNumber(v){return v.toLocaleString("en-US",{maximumFractionDigits:0})}function getGrantForYear(y){return enabledYears[y]&&historicalGrants[y]!==null?historicalGrants[y]:rsuAmount}function getPricePerShare(){return(ipoValuation*1000)/totalShares}function update(){const price=getPricePerShare();document.getElementById("rsuDisplay").textContent=formatNumber(rsuAmount);document.getElementById("ipoDisplay").textContent=ipoValuation.toFixed(1);document.getElementById("sharesDisplay").textContent=totalShares;document.getElementById("priceDisplay").textContent="$"+price.toFixed(2);document.getElementById("priceCalc").textContent="($"+ipoValuation+"B ÷ "+totalShares+"M)";document.getElementById("defaultGrantDisplay").textContent=formatNumber(rsuAmount);const totalValue=rsuAmount*price;document.getElementById("heroValue").textContent=formatCurrency(totalValue);document.getElementById("heroCalc").textContent=formatNumber(rsuAmount)+" × $"+price.toFixed(2);document.getElementById("startYearDisplay").textContent=startYear;document.getElementById("yearsDisplay").textContent=yearsWorked;const hasCustom=Object.values(enabledYears).some(v=>v);document.getElementById("multiYearSubtitle").textContent=hasCustom?"Custom grants per year":formatNumber(rsuAmount)+" shares/year";renderVesting(price);renderChart(price);renderYearChips();renderGrantEditors();updateStats(price)}function renderVesting(price){const container=document.getElementById("vestingSchedule");const yearlyVest=rsuAmount/4;let html="";for(let i=1;i<=4;i++){const cumShares=yearlyVest*i;const cumValue=cumShares*price;const addValue=yearlyVest*price;const pct=(cumShares/rsuAmount)*100;html+='<div class="vest-item"><div class="vest-header"><div class="vest-left"><div class="vest-year" style="background:rgba(45,212,191,'+(0.1+i*0.08)+')">Y'+i+'</div><div><p class="vest-shares">+'+formatNumber(yearlyVest)+'</p><p class="vest-total">'+formatNumber(cumShares)+' total</p></div></div><div class="vest-right"><p class="vest-value">'+formatCurrency(cumValue)+'</p><p class="vest-add">+'+formatCurrency(addValue)+'</p></div></div><div class="progress-bar"><div class="progress-fill" style="width:'+pct+'%"></div></div></div>'}container.innerHTML=html}function getMultiYearData(price){const data=[];for(let i=0;i<yearsWorked;i++){const calYear=startYear+i;let vestingThisYear=0,totalVested=0;for(let g=0;g<=i;g++){const grantYear=startYear+g;const grantAmt=getGrantForYear(grantYear);const vestPerYear=grantAmt/4;const yearsInto=i-g+1;const yrsVested=Math.min(yearsInto,4);totalVested+=yrsVested*vestPerYear;if(yearsInto<=4)vestingThisYear+=vestPerYear}data.push({year:i+1,calendarYear:calYear,label:"'"+String(calYear).slice(2),sharesVesting:Math.round(vestingThisYear),totalVested:Math.round(totalVested),totalValue:totalVested*price,grantThisYear:getGrantForYear(calYear)})}return data}function renderChart(price){const data=getMultiYearData(price);const svg=document.getElementById("chart");const container=document.getElementById("chartContainer");const w=container.clientWidth;const h=container.clientHeight;const padding={top:20,right:20,bottom:30,left:55};const chartW=w-padding.left-padding.right;const chartH=h-padding.top-padding.bottom;const maxVal=Math.max(...data.map(d=>d.totalValue))*1.1;let html='<defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.5"/><stop offset="100%" stop-color="#2dd4bf" stop-opacity="0"/></linearGradient></defs>';for(let i=0;i<=4;i++){const y=padding.top+chartH-(i/4)*chartH;html+='<line x1="'+padding.left+'" y1="'+y+'" x2="'+(w-padding.right)+'" y2="'+y+'" stroke="rgba(255,255,255,0.04)" stroke-dasharray="3,3"/>';const val=(i/4)*maxVal;const label=val>=1e6?"$"+(val/1e6).toFixed(1)+"M":val>=1e3?"$"+(val/1e3).toFixed(0)+"K":"$"+Math.round(val);html+='<text x="'+(padding.left-8)+'" y="'+(y+4)+'" fill="rgba(255,255,255,0.35)" font-size="10" text-anchor="end">'+label+"</text>"}let areaPath="M "+padding.left+" "+(padding.top+chartH);let linePath="";data.forEach((d,i)=>{const x=padding.left+(i/(data.length-1||1))*chartW;const y=padding.top+chartH-(d.totalValue/maxVal)*chartH;areaPath+=" L "+x+" "+y;linePath+=(i===0?"M ":" L ")+x+" "+y});areaPath+=" L "+(padding.left+(data.length-1)*chartW/(data.length-1||1))+" "+(padding.top+chartH)+" Z";html+='<path d="'+areaPath+'" fill="url(#areaGrad)"/>';html+='<path d="'+linePath+'" fill="none" stroke="#2dd4bf" stroke-width="2"/>';data.forEach((d,i)=>{const x=padding.left+(i/(data.length-1||1))*chartW;const y=padding.top+chartH-(d.totalValue/maxVal)*chartH;html+='<circle cx="'+x+'" cy="'+y+'" r="4" fill="#2dd4bf" class="chart-point" data-index="'+i+'"/>';html+='<text x="'+x+'" y="'+(h-8)+'" fill="rgba(255,255,255,0.35)" font-size="11" text-anchor="middle">'+d.label+"</text>"});svg.innerHTML=html;svg.setAttribute("viewBox","0 0 "+w+" "+h);const points=svg.querySelectorAll(".chart-point");const tooltip=document.getElementById("tooltip");points.forEach(p=>{p.addEventListener("mouseenter",e=>{const idx=parseInt(e.target.dataset.index);const d=data[idx];tooltip.innerHTML='<p class="tooltip-year">'+d.calendarYear+'</p><div class="tooltip-row"><span class="tooltip-label">Vested</span><span class="tooltip-value">'+formatNumber(d.totalVested)+'</span></div><div class="tooltip-row tooltip-total"><span class="tooltip-label">Value</span><span class="tooltip-value">'+formatCurrency(d.totalValue)+"</span></div>";tooltip.classList.add("visible");const px=parseFloat(e.target.getAttribute("cx"));const py=parseFloat(e.target.getAttribute("cy"));tooltip.style.left=(px-60)+"px";tooltip.style.top=(py-100)+"px"});p.addEventListener("mouseleave",()=>tooltip.classList.remove("visible"))})}function updateStats(price){const data=getMultiYearData(price);let totalGranted=0;for(let i=0;i<yearsWorked;i++)totalGranted+=getGrantForYear(startYear+i);const lastData=data[data.length-1]||{totalVested:0,totalValue:0};const unvested=totalGranted-lastData.totalVested;document.getElementById("grantedStat").textContent=formatNumber(totalGranted);document.getElementById("vestedStat").textContent=formatNumber(lastData.totalVested);document.getElementById("unvestedStat").textContent=formatNumber(unvested);document.getElementById("totalValueStat").textContent=formatCurrency(lastData.totalValue)}function renderYearChips(){const container=document.getElementById("yearChips");container.innerHTML=availableYears.map(y=>'<button class="year-chip '+(enabledYears[y]?"active":"")+'" onclick="toggleYear('+y+')">'+y+"</button>").join("")}function renderGrantEditors(){const container=document.getElementById("grantEditors");const activeYears=availableYears.filter(y=>enabledYears[y]);if(activeYears.length===0){container.innerHTML="";return}container.innerHTML=activeYears.map(y=>{const val=historicalGrants[y]||rsuAmount;return'<div class="grant-editor"><div class="grant-header"><span class="grant-year">'+y+'</span><span class="grant-value editable" onclick="editGrant('+y+')" id="grant'+y+'">'+formatNumber(val)+' shares</span></div><input type="range" min="0" max="460" value="'+valueToSlider(val)+'" oninput="updateGrant('+y+',this.value)" id="grantSlider'+y+'"></div>'}).join("")}function toggleYear(y){enabledYears[y]=!enabledYears[y];if(enabledYears[y]&&historicalGrants[y]===null)historicalGrants[y]=rsuAmount;update()}function updateGrant(y,sliderVal){historicalGrants[y]=sliderToValue(Number(sliderVal));update()}function editGrant(y){const el=document.getElementById("grant"+y);const val=historicalGrants[y]||rsuAmount;el.innerHTML='<input type="text" class="edit-input" value="'+val+"" onblur="commitGrant("+y+",this)" onkeydown="if(event.key==='Enter')this.blur()">';el.querySelector("input").focus();el.querySelector("input").select()}function commitGrant(y,input){let val=parseFloat(input.value.replace(/,/g,""));if(!isNaN(val)){val=Math.max(0,Math.min(10000000,val));historicalGrants[y]=val;document.getElementById("grantSlider"+y).value=valueToSlider(val)}update()}function toggleAdvanced(){const section=document.getElementById("advancedSection");const icon=document.getElementById("advancedIcon");section.classList.toggle("hidden");icon.textContent=section.classList.contains("hidden")?"+":"−"}function toggleGrants(){const section=document.getElementById("grantsSection");const icon=document.getElementById("grantsIcon");section.classList.toggle("hidden");icon.textContent=section.classList.contains("hidden")?"+":"−"}function editValue(field){const configs={rsu:{el:"rsuDisplay",val:rsuAmount,min:0,max:10000000,update:v=>{rsuAmount=v;document.getElementById("rsuSlider").value=valueToSlider(v)}},ipo:{el:"ipoDisplay",val:ipoValuation,min:5,max:250,update:v=>{ipoValuation=v;document.getElementById("ipoSlider").value=v}},shares:{el:"sharesDisplay",val:totalShares,min:250,max:1000,update:v=>{totalShares=v;document.getElementById("sharesSlider").value=v}},startYear:{el:"startYearDisplay",val:startYear,min:2020,max:2026,update:v=>{startYear=v;document.getElementById("startYearSlider").value=v}},years:{el:"yearsDisplay",val:yearsWorked,min:1,max:20,update:v=>{yearsWorked=v;document.getElementById("yearsSlider").value=v}}};const cfg=configs[field];const el=document.getElementById(cfg.el);el.innerHTML='<input type="text" class="edit-input" value="'+cfg.val+'" id="editInput">';const input=document.getElementById("editInput");input.focus();input.select();input.onblur=()=>{let v=parseFloat(input.value.replace(/,/g,""));if(!isNaN(v)){v=Math.max(cfg.min,Math.min(cfg.max,v));if(field==="startYear"||field==="years")v=Math.round(v);cfg.update(v)}update()};input.onkeydown=e=>{if(e.key==="Enter")input.blur();if(e.key==="Escape")update()}}document.getElementById("rsuSlider").oninput=e=>{rsuAmount=sliderToValue(Number(e.target.value));update()};document.getElementById("ipoSlider").oninput=e=>{ipoValuation=Number(e.target.value);update()};document.getElementById("sharesSlider").oninput=e=>{totalShares=Number(e.target.value);update()};document.getElementById("startYearSlider").oninput=e=>{startYear=Number(e.target.value);update()};document.getElementById("yearsSlider").oninput=e=>{yearsWorked=Number(e.target.value);update()};window.addEventListener("resize",()=>update());update();</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantinuum RSU Calculator</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:#030306;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#fff;overflow-x:hidden}.bg1{position:fixed;top:-10%;left:-20%;width:80vw;height:80vw;max-width:800px;max-height:800px;background:radial-gradient(circle,rgba(45,212,191,.12) 0%,transparent 50%);filter:blur(80px);pointer-events:none;animation:float 30s ease-in-out infinite}
+.bg2{position:fixed;bottom:0;right:-10%;width:60vw;height:60vw;max-width:600px;max-height:600px;background:radial-gradient(circle,rgba(20,184,166,.1) 0%,transparent 50%);filter:blur(100px);pointer-events:none;animation:float 25s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translate(0,0)}33%{transform:translate(20px,-20px)}66%{transform:translate(-15px,10px)}}
+@keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.container{position:relative;padding:48px 24px;max-width:880px;margin:0 auto}
+@media(max-width:640px){.container{padding:24px 16px}}.badge{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;background:rgba(45,212,191,.1);border-radius:100px;margin-bottom:20px;border:1px solid rgba(45,212,191,.25)}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:#2dd4bf;box-shadow:0 0 12px #2dd4bf;animation:pulse 2s ease-in-out infinite}
+.badge-text{color:#2dd4bf;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+h1{font-size:clamp(32px,6vw,44px);font-weight:700;margin-bottom:12px;letter-spacing:-.03em;line-height:1.1}
+h1 .teal{color:#2dd4bf;text-shadow:0 0 60px rgba(45,212,191,.5)}
+.subtitle{color:rgba(255,255,255,.4);font-size:14px;margin-bottom:48px}
+.card{background:linear-gradient(165deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.02) 100%);backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:36px;margin-bottom:20px}
+@media(max-width:640px){.card{padding:24px 20px;border-radius:20px}}
+.card-inner{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:900px){.grid{grid-template-columns:1fr;gap:32px}}
+.label{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px}
+.label-bar{width:3px;height:12px;border-radius:2px;background:#2dd4bf}
+.value-display{margin-bottom:20px}
+.value{font-size:clamp(28px,5vw,36px);font-weight:600;color:#fff;letter-spacing:-.02em}
+.value-suffix{font-size:13px;color:rgba(45,212,191,.8);font-weight:500;margin-left:6px}
+input[type="range"]{-webkit-appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(90deg,rgba(45,212,191,.3) 0%,rgba(45,212,191,.1) 100%);cursor:pointer;outline:none}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#2dd4bf 0%,#14b8a6 100%);cursor:pointer;box-shadow:0 0 0 4px rgba(45,212,191,.2),0 4px 16px rgba(45,212,191,.4);transition:all .2s ease}
+input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.1);box-shadow:0 0 0 6px rgba(45,212,191,.3),0 4px 24px rgba(45,212,191,.6)}
+input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#2dd4bf 0%,#14b8a6 100%);cursor:pointer;border:none}
+.range-labels{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.25);margin-top:10px}
+.price-box{margin-top:28px;padding:14px 20px;background:rgba(45,212,191,.06);border-radius:14px;border:1px solid rgba(45,212,191,.15);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px}
+.price-label{color:rgba(255,255,255,.45);font-size:13px}
+.price-value{color:#2dd4bf;font-weight:700;font-size:17px}
+.price-calc{color:rgba(255,255,255,.25);font-size:11px}.expand-btn{background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:12px 0;font-size:14px;font-weight:500;color:rgba(255,255,255,.5);transition:all .3s ease}
+.expand-btn:hover{color:#2dd4bf}
+.icon-box{width:28px;height:28px;border-radius:8px;background:rgba(45,212,191,.15);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:300;color:#2dd4bf}
+.hero{position:relative;border-radius:24px;padding:48px 40px;margin-bottom:20px;overflow:hidden;background:linear-gradient(135deg,rgba(45,212,191,.15) 0%,rgba(13,148,136,.08) 100%);border:1px solid rgba(45,212,191,.3);text-align:center}
+@media(max-width:640px){.hero{padding:36px 24px}}
+.hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:250px;height:150px;background:radial-gradient(ellipse,rgba(45,212,191,.4) 0%,transparent 70%);filter:blur(50px);pointer-events:none}
+.hero-label{color:rgba(255,255,255,.6);font-size:11px;text-transform:uppercase;letter-spacing:.2em;margin-bottom:12px;font-weight:600}
+.hero-value{font-size:clamp(48px,10vw,64px);font-weight:700;color:#fff;letter-spacing:-.03em;text-shadow:0 0 80px rgba(45,212,191,.6)}
+.hero-calc{color:rgba(255,255,255,.5);margin-top:12px;font-size:13px}
+.section-title{font-size:18px;font-weight:600;color:#fff;margin-bottom:4px}
+.section-subtitle{color:rgba(255,255,255,.4);font-size:12px;margin-bottom:24px}
+.vest-item{padding:18px 20px;background:rgba(255,255,255,.02);border-radius:14px;border:1px solid rgba(255,255,255,.05);margin-bottom:12px}
+@media(max-width:640px){.vest-item{padding:16px}}
+.vest-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:12px}
+.vest-left{display:flex;align-items:center;gap:12px}
+.vest-year{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#2dd4bf;font-weight:700;font-size:13px;flex-shrink:0;border:1px solid rgba(45,212,191,.3)}
+.vest-shares{color:#fff;font-weight:500;font-size:14px}
+.vest-total{color:rgba(255,255,255,.35);font-size:11px}
+.vest-right{text-align:right}
+.vest-value{color:#fff;font-weight:600;font-size:16px}
+.vest-add{color:#2dd4bf;font-size:11px;font-weight:600}
+.progress-bar{height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#2dd4bf 0%,#14b8a6 100%);box-shadow:0 0 16px rgba(45,212,191,.5);transition:width .4s ease}
+.time-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px}
+@media(max-width:900px){.time-grid{grid-template-columns:1fr}}
+.chart-container{height:260px;width:100%;margin-bottom:28px;position:relative}
+@media(max-width:640px){.chart-container{height:220px}}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px;text-align:center}
+@media(max-width:640px){.stat-box{padding:14px 12px;border-radius:14px}}
+.stat-box.highlight{background:rgba(45,212,191,.08);border-color:rgba(45,212,191,.25)}
+.stat-label{color:rgba(255,255,255,.4);font-size:10px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;font-weight:600}
+.stat-value{font-weight:600;font-size:clamp(18px,3vw,22px)}
+.stat-value.red{color:#f87171}
+.stat-value.teal{color:#2dd4bf}.disclaimer{padding:16px 20px;border-radius:14px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.02)}
+.disclaimer p{color:rgba(255,255,255,.3);font-size:11px;line-height:1.6}
+.disclaimer .note{color:rgba(45,212,191,.7);font-weight:600}
+.tooltip{position:absolute;background:rgba(0,0,0,.95);backdrop-filter:blur(20px);border:1px solid rgba(45,212,191,.4);border-radius:16px;padding:16px 20px;box-shadow:0 20px 40px rgba(0,0,0,.5);pointer-events:none;opacity:0;transition:opacity .2s;z-index:100}
+.tooltip.visible{opacity:1}
+.tooltip-year{color:#2dd4bf;font-weight:700;font-size:15px;margin-bottom:12px}
+.tooltip-row{display:flex;justify-content:space-between;gap:24px;margin-bottom:8px}
+.tooltip-label{color:rgba(255,255,255,.5);font-size:12px}
+.tooltip-value{color:#fff;font-weight:600;font-size:13px}
+.tooltip-total{padding-top:8px;border-top:1px solid rgba(255,255,255,.1)}
+.tooltip-total .tooltip-label{color:rgba(255,255,255,.7);font-size:13px}
+.tooltip-total .tooltip-value{color:#2dd4bf;font-weight:700;font-size:16px}
+.hidden{display:none}
+.year-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.year-chip{padding:10px 16px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all .25s ease;border:1px solid transparent;background:rgba(255,255,255,.04);color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.08)}
+.year-chip:hover{background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.3);color:rgba(255,255,255,.8)}
+.year-chip.active{background:rgba(45,212,191,.2);color:#2dd4bf;border-color:rgba(45,212,191,.5)}
+.grant-editor{padding:16px;background:rgba(45,212,191,.05);border-radius:12px;border:1px solid rgba(45,212,191,.15);margin-bottom:12px}
+.grant-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.grant-year{color:#2dd4bf;font-size:14px;font-weight:600}
+.grant-value{color:#fff;font-size:16px;font-weight:600}
+.editable{cursor:pointer;padding:6px 10px;margin:-6px -10px;border-radius:12px;transition:all .3s}
+.editable:hover{background:rgba(45,212,191,.1)}
+.edit-input{font-size:inherit;font-weight:600;color:#fff;background:rgba(45,212,191,.15);border:2px solid rgba(45,212,191,.6);border-radius:12px;padding:8px 12px;outline:none;font-family:inherit;max-width:150px}
+</style>
+</head>
+<body>
+<div class="bg1"></div>
+<div class="bg2"></div>
+<div class="container">
+<div style="text-align:center">
+<div class="badge"><div class="badge-dot"></div><span class="badge-text">Equity Calculator</span></div>
+<h1><span class="teal">Quantinuum</span> RSU Value</h1>
+<p class="subtitle">Model your equity across IPO scenarios</p>
+</div>
+<div class="card">
+<div class="grid">
+<div>
+<div class="label"><div class="label-bar"></div>Annual RSU Grant</div>
+<div class="value-display">
+<span class="value editable" id="rsuDisplay" onclick="editValue('rsu')">1,000</span>
+<span class="value-suffix">shares/yr</span>
+</div>
+<input type="range" id="rsuSlider" min="0" max="460" value="100">
+<div class="range-labels"><span>0</span><span>100K</span></div>
+</div>
+<div>
+<div class="label"><div class="label-bar"></div>IPO Valuation</div>
+<div class="value-display">
+<span class="value">$</span>
+<span class="value editable" id="ipoDisplay" onclick="editValue('ipo')">17.5</span>
+<span class="value-suffix">billion</span>
+</div>
+<input type="range" id="ipoSlider" min="5" max="250" step="0.5" value="17.5">
+<div class="range-labels"><span>$5B</span><span>$250B</span></div>
+</div>
+</div>
+<div class="price-box">
+<span class="price-label">Share price:</span>
+<span class="price-value" id="priceDisplay">$38.89</span>
+<span class="price-calc" id="priceCalc">($17.5B ÷ 450M)</span>
+</div>
+<button class="expand-btn" id="advancedBtn" onclick="toggleAdvanced()">
+<span class="icon-box" id="advancedIcon">+</span>
+Advanced Settings
+</button>
+<div id="advancedSection" class="hidden">
+<div class="card-inner" style="margin-top:12px">
+<div style="margin-bottom:28px">
+<div class="label">Total Shares Outstanding</div>
+<div class="value-display">
+<span class="value editable" id="sharesDisplay" onclick="editValue('shares')" style="font-size:26px">450</span>
+<span class="value-suffix">million</span>
+</div>
+<input type="range" id="sharesSlider" min="250" max="1000" step="10" value="450">
+<p style="font-size:11px;color:rgba(255,255,255,.3);margin-top:10px">Actual count in S-1 filing.</p>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,.06);padding-top:20px">
+<button class="expand-btn" id="grantsBtn" onclick="toggleGrants()" style="padding:0">
+<span class="icon-box" id="grantsIcon">+</span>
+Customize Past Grants
+</button>
+<div id="grantsSection" class="hidden" style="margin-top:16px">
+<p style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px;line-height:1.5">
+Tap years to customize. Others use default: <span style="color:#2dd4bf;font-weight:600" id="defaultGrantDisplay">1,000</span>
+</p>
+<div class="year-chips" id="yearChips"></div>
+<div id="grantEditors"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hero">
+<div class="hero-glow"></div>
+<div style="position:relative">
+<p class="hero-label">Single Grant · Fully Vested</p>
+<p class="hero-value" id="heroValue">$38.9K</p>
+<p class="hero-calc" id="heroCalc">1,000 × $38.89</p>
+</div>
+</div>
+
+<div class="card">
+<h2 class="section-title">Vesting Schedule</h2>
+<p class="section-subtitle">25% per year, 4 years</p>
+<div id="vestingSchedule"></div>
+</div>
+
+<div class="card">
+<h2 class="section-title">Multi-Year Growth</h2>
+<p class="section-subtitle" id="multiYearSubtitle">1,000 shares/year</p>
+<div class="time-grid">
+<div class="card-inner">
+<div class="label" style="margin-bottom:10px">Start Year</div>
+<div class="value-display" style="margin-bottom:10px">
+<span class="value editable" id="startYearDisplay" onclick="editValue('startYear')" style="font-size:24px">2022</span>
+</div>
+<input type="range" id="startYearSlider" min="2020" max="2026" step="1" value="2022">
+</div>
+<div class="card-inner">
+<div class="label" style="margin-bottom:10px">Years at Company</div>
+<div class="value-display" style="margin-bottom:10px">
+<span class="value editable" id="yearsDisplay" onclick="editValue('years')" style="font-size:24px">5</span>
+<span class="value-suffix">yrs</span>
+</div>
+<input type="range" id="yearsSlider" min="1" max="20" step="1" value="5">
+</div>
+</div>
+<div class="chart-container" id="chartContainer">
+<svg id="chart" width="100%" height="100%"></svg>
+<div class="tooltip" id="tooltip"></div>
+</div>
+<div class="stats-grid">
+<div class="stat-box">
+<p class="stat-label">Granted</p>
+<p class="stat-value" id="grantedStat">5,000</p>
+</div>
+<div class="stat-box">
+<p class="stat-label">Vested</p>
+<p class="stat-value" id="vestedStat">3,750</p>
+</div>
+<div class="stat-box">
+<p class="stat-label">Unvested</p>
+<p class="stat-value red" id="unvestedStat">1,250</p>
+</div>
+<div class="stat-box highlight">
+<p class="stat-label" style="color:rgba(45,212,191,.8)">Total Value</p>
+<p class="stat-value teal" id="totalValueStat">$145.8K</p>
+</div>
+</div>
+</div>
+
+<div class="disclaimer">
+<p><span class="note">Note:</span> Estimates only. Share price depends on market conditions, final share count, and underwriter pricing. Consult your equity agreement and a financial advisor.</p>
+</div>
+</div>
+<script>
+let rsuAmount=1000,ipoValuation=17.5,totalShares=450,yearsWorked=5,startYear=2022;
+const historicalGrants={2020:null,2021:null,2022:null,2023:null,2024:null,2025:null,2026:null};
+const enabledYears={2020:false,2021:false,2022:false,2023:false,2024:false,2025:false,2026:false};
+const availableYears=[2020,2021,2022,2023,2024,2025,2026];
+let editingField=null;
+
+function sliderToValue(s){if(s<=200)return s*10;if(s<=320)return 2000+(s-200)*25;if(s<=370)return 5000+(s-320)*100;return 10000+(s-370)*1000}
+function valueToSlider(v){if(v<=2000)return v/10;if(v<=5000)return 200+(v-2000)/25;if(v<=10000)return 320+(v-5000)/100;return 370+(v-10000)/1000}
+function formatCurrency(v){if(v>=1e6)return'$'+(v/1e6).toFixed(2)+'M';if(v>=1e3)return'$'+(v/1e3).toFixed(0)+'K';return'$'+v.toLocaleString('en-US',{maximumFractionDigits:0})}
+function formatNumber(v){return v.toLocaleString('en-US',{maximumFractionDigits:0})}
+function getGrantForYear(y){return enabledYears[y]&&historicalGrants[y]!==null?historicalGrants[y]:rsuAmount}
+function getPricePerShare(){return(ipoValuation*1000)/totalShares}
+function update(){
+const price=getPricePerShare();
+document.getElementById('rsuDisplay').textContent=formatNumber(rsuAmount);
+document.getElementById('ipoDisplay').textContent=ipoValuation.toFixed(1);
+document.getElementById('sharesDisplay').textContent=totalShares;
+document.getElementById('priceDisplay').textContent='$'+price.toFixed(2);
+document.getElementById('priceCalc').textContent='($'+ipoValuation+'B ÷ '+totalShares+'M)';
+document.getElementById('defaultGrantDisplay').textContent=formatNumber(rsuAmount);
+const totalValue=rsuAmount*price;
+document.getElementById('heroValue').textContent=formatCurrency(totalValue);
+document.getElementById('heroCalc').textContent=formatNumber(rsuAmount)+' × $'+price.toFixed(2);
+document.getElementById('startYearDisplay').textContent=startYear;
+document.getElementById('yearsDisplay').textContent=yearsWorked;
+const hasCustom=Object.values(enabledYears).some(v=>v);
+document.getElementById('multiYearSubtitle').textContent=hasCustom?'Custom grants per year':formatNumber(rsuAmount)+' shares/year';
+renderVesting(price);
+renderChart(price);
+renderYearChips();
+renderGrantEditors();
+updateStats(price);
+}
+function renderVesting(price){
+const container=document.getElementById('vestingSchedule');
+const yearlyVest=rsuAmount/4;
+let html='';
+for(let i=1;i<=4;i++){
+const cumShares=yearlyVest*i;
+const cumValue=cumShares*price;
+const addValue=yearlyVest*price;
+const pct=(cumShares/rsuAmount)*100;
+html+=`<div class="vest-item">
+<div class="vest-header">
+<div class="vest-left">
+<div class="vest-year" style="background:rgba(45,212,191,${0.1+i*0.08})">Y${i}</div>
+<div><p class="vest-shares">+${formatNumber(yearlyVest)}</p><p class="vest-total">${formatNumber(cumShares)} total</p></div>
+</div>
+<div class="vest-right"><p class="vest-value">${formatCurrency(cumValue)}</p><p class="vest-add">+${formatCurrency(addValue)}</p></div>
+</div>
+<div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+</div>`;
+}
+container.innerHTML=html;
+}
+function getMultiYearData(price){
+const data=[];
+for(let i=0;i<yearsWorked;i++){
+const calYear=startYear+i;
+let vestingThisYear=0,totalVested=0;
+for(let g=0;g<=i;g++){
+const grantYear=startYear+g;
+const grantAmt=getGrantForYear(grantYear);
+const vestPerYear=grantAmt/4;
+const yearsInto=i-g+1;
+const yrsVested=Math.min(yearsInto,4);
+totalVested+=yrsVested*vestPerYear;
+if(yearsInto<=4)vestingThisYear+=vestPerYear;
+}
+data.push({year:i+1,calendarYear:calYear,label:"'"+String(calYear).slice(2),sharesVesting:Math.round(vestingThisYear),totalVested:Math.round(totalVested),totalValue:totalVested*price,grantThisYear:getGrantForYear(calYear)});
+}
+return data;
+}
+function renderChart(price){
+const data=getMultiYearData(price);
+const svg=document.getElementById('chart');
+const container=document.getElementById('chartContainer');
+const w=container.clientWidth;
+const h=container.clientHeight;
+const padding={top:20,right:20,bottom:30,left:55};
+const chartW=w-padding.left-padding.right;
+const chartH=h-padding.top-padding.bottom;
+const maxVal=Math.max(...data.map(d=>d.totalValue))*1.1;
+
+let html=`<defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.5"/>
+<stop offset="100%" stop-color="#2dd4bf" stop-opacity="0"/>
+</linearGradient></defs>`;
+
+// Grid lines
+for(let i=0;i<=4;i++){
+const y=padding.top+chartH-(i/4)*chartH;
+html+=`<line x1="${padding.left}" y1="${y}" x2="${w-padding.right}" y2="${y}" stroke="rgba(255,255,255,0.04)" stroke-dasharray="3,3"/>`;
+const val=(i/4)*maxVal;
+const label=val>=1e6?'$'+(val/1e6).toFixed(1)+'M':val>=1e3?'$'+(val/1e3).toFixed(0)+'K':'$'+Math.round(val);
+html+=`<text x="${padding.left-8}" y="${y+4}" fill="rgba(255,255,255,0.35)" font-size="10" text-anchor="end">${label}</text>`;
+}
+
+// Area path
+let areaPath=`M ${padding.left} ${padding.top+chartH}`;
+let linePath='';
+data.forEach((d,i)=>{
+const x=padding.left+(i/(data.length-1||1))*chartW;
+const y=padding.top+chartH-(d.totalValue/maxVal)*chartH;
+areaPath+=` L ${x} ${y}`;
+linePath+=(i===0?'M ':' L ')+`${x} ${y}`;
+});
+areaPath+=` L ${padding.left+(data.length-1)*chartW/(data.length-1||1)} ${padding.top+chartH} Z`;
+html+=`<path d="${areaPath}" fill="url(#areaGrad)"/>`;
+html+=`<path d="${linePath}" fill="none" stroke="#2dd4bf" stroke-width="2"/>`;
+// Points and labels
+data.forEach((d,i)=>{
+const x=padding.left+(i/(data.length-1||1))*chartW;
+const y=padding.top+chartH-(d.totalValue/maxVal)*chartH;
+html+=`<circle cx="${x}" cy="${y}" r="4" fill="#2dd4bf" class="chart-point" data-index="${i}"/>`;
+html+=`<text x="${x}" y="${h-8}" fill="rgba(255,255,255,0.35)" font-size="11" text-anchor="middle">${d.label}</text>`;
+});
+
+svg.innerHTML=html;
+svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+
+// Tooltip events
+const points=svg.querySelectorAll('.chart-point');
+const tooltip=document.getElementById('tooltip');
+points.forEach(p=>{
+p.addEventListener('mouseenter',e=>{
+const idx=parseInt(e.target.dataset.index);
+const d=data[idx];
+tooltip.innerHTML=`<p class="tooltip-year">${d.calendarYear}</p>
+<div class="tooltip-row"><span class="tooltip-label">Vested</span><span class="tooltip-value">${formatNumber(d.totalVested)}</span></div>
+<div class="tooltip-row tooltip-total"><span class="tooltip-label">Value</span><span class="tooltip-value">${formatCurrency(d.totalValue)}</span></div>`;
+tooltip.classList.add('visible');
+const rect=container.getBoundingClientRect();
+const px=parseFloat(e.target.getAttribute('cx'));
+const py=parseFloat(e.target.getAttribute('cy'));
+tooltip.style.left=(px-60)+'px';
+tooltip.style.top=(py-100)+'px';
+});
+p.addEventListener('mouseleave',()=>tooltip.classList.remove('visible'));
+});
+}
+function updateStats(price){
+const data=getMultiYearData(price);
+let totalGranted=0;
+for(let i=0;i<yearsWorked;i++)totalGranted+=getGrantForYear(startYear+i);
+const lastData=data[data.length-1]||{totalVested:0,totalValue:0};
+const unvested=totalGranted-lastData.totalVested;
+document.getElementById('grantedStat').textContent=formatNumber(totalGranted);
+document.getElementById('vestedStat').textContent=formatNumber(lastData.totalVested);
+document.getElementById('unvestedStat').textContent=formatNumber(unvested);
+document.getElementById('totalValueStat').textContent=formatCurrency(lastData.totalValue);
+}
+function renderYearChips(){
+const container=document.getElementById('yearChips');
+container.innerHTML=availableYears.map(y=>`<button class="year-chip ${enabledYears[y]?'active':''}" onclick="toggleYear(${y})">${y}</button>`).join('');
+}
+
+function renderGrantEditors(){
+const container=document.getElementById('grantEditors');
+const activeYears=availableYears.filter(y=>enabledYears[y]);
+if(activeYears.length===0){container.innerHTML='';return;}
+container.innerHTML=activeYears.map(y=>{
+const val=historicalGrants[y]||rsuAmount;
+return`<div class="grant-editor">
+<div class="grant-header">
+<span class="grant-year">${y}</span>
+<span class="grant-value editable" onclick="editGrant(${y})" id="grant${y}">${formatNumber(val)} shares</span>
+</div>
+<input type="range" min="0" max="460" value="${valueToSlider(val)}" oninput="updateGrant(${y},this.value)" id="grantSlider${y}">
+</div>`;
+}).join('');
+}
+
+function toggleYear(y){
+enabledYears[y]=!enabledYears[y];
+if(enabledYears[y]&&historicalGrants[y]===null)historicalGrants[y]=rsuAmount;
+update();
+}
+
+function updateGrant(y,sliderVal){
+historicalGrants[y]=sliderToValue(Number(sliderVal));
+update();
+}
+function editGrant(y){
+const el=document.getElementById('grant'+y);
+const val=historicalGrants[y]||rsuAmount;
+el.innerHTML=`<input type="text" class="edit-input" value="${val}" onblur="commitGrant(${y},this)" onkeydown="if(event.key==='Enter')this.blur()">`;
+el.querySelector('input').focus();
+el.querySelector('input').select();
+}
+
+function commitGrant(y,input){
+let val=parseFloat(input.value.replace(/,/g,''));
+if(!isNaN(val)){
+val=Math.max(0,Math.min(10000000,val));
+historicalGrants[y]=val;
+document.getElementById('grantSlider'+y).value=valueToSlider(val);
+}
+update();
+}
+
+function toggleAdvanced(){
+const section=document.getElementById('advancedSection');
+const icon=document.getElementById('advancedIcon');
+section.classList.toggle('hidden');
+icon.textContent=section.classList.contains('hidden')?'+':'−';
+}
+
+function toggleGrants(){
+const section=document.getElementById('grantsSection');
+const icon=document.getElementById('grantsIcon');
+section.classList.toggle('hidden');
+icon.textContent=section.classList.contains('hidden')?'+':'−';
+}
+function editValue(field){
+const configs={
+rsu:{el:'rsuDisplay',val:rsuAmount,min:0,max:10000000,suffix:' shares/yr',update:v=>{rsuAmount=v;document.getElementById('rsuSlider').value=valueToSlider(v)}},
+ipo:{el:'ipoDisplay',val:ipoValuation,min:5,max:250,suffix:' billion',update:v=>{ipoValuation=v;document.getElementById('ipoSlider').value=v}},
+shares:{el:'sharesDisplay',val:totalShares,min:250,max:1000,suffix:' million',update:v=>{totalShares=v;document.getElementById('sharesSlider').value=v}},
+startYear:{el:'startYearDisplay',val:startYear,min:2020,max:2026,suffix:'',update:v=>{startYear=v;document.getElementById('startYearSlider').value=v}},
+years:{el:'yearsDisplay',val:yearsWorked,min:1,max:20,suffix:' yrs',update:v=>{yearsWorked=v;document.getElementById('yearsSlider').value=v}}
+};
+const cfg=configs[field];
+const el=document.getElementById(cfg.el);
+el.innerHTML=`<input type="text" class="edit-input" value="${cfg.val}" id="editInput">`;
+const input=document.getElementById('editInput');
+input.focus();
+input.select();
+input.onblur=()=>{
+let v=parseFloat(input.value.replace(/,/g,''));
+if(!isNaN(v)){v=Math.max(cfg.min,Math.min(cfg.max,v));if(field==='startYear'||field==='years')v=Math.round(v);cfg.update(v);}
+update();
+};
+input.onkeydown=e=>{if(e.key==='Enter')input.blur();if(e.key==='Escape')update();};
+}
+document.getElementById('rsuSlider').oninput=e=>{rsuAmount=sliderToValue(Number(e.target.value));update()};
+document.getElementById('ipoSlider').oninput=e=>{ipoValuation=Number(e.target.value);update()};
+document.getElementById('sharesSlider').oninput=e=>{totalShares=Number(e.target.value);update()};
+document.getElementById('startYearSlider').oninput=e=>{startYear=Number(e.target.value);update()};
+document.getElementById('yearsSlider').oninput=e=>{yearsWorked=Number(e.target.value);update()};
+
+window.addEventListener('resize',()=>update());
+update();
+</script>
+</body>
+</html>
